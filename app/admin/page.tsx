@@ -1,4 +1,19 @@
-'use client';
-import {useState} from 'react';
-type Inquiry={id:string;program:string;name:string;contact:string;organization:string;message:string;created_at:number};
-export default function Admin(){const [key,setKey]=useState('');const [items,setItems]=useState<Inquiry[]>([]);const [status,setStatus]=useState('');const [busy,setBusy]=useState(false);async function load(e:React.FormEvent){e.preventDefault();setBusy(true);try{const res=await fetch('/api/admin/inquiries',{headers:{Authorization:'Bearer '+key}});const data=await res.json() as {error?:string;items:Inquiry[]};if(!res.ok)throw new Error(data.error);setItems(data.items);setStatus(`최근 ${data.items.length}건을 불러왔습니다.`)}catch(e){setItems([]);setStatus(e instanceof Error?e.message:'불러오기 실패')}finally{setBusy(false)}}async function remove(id:string){if(!window.confirm('상담을 마쳤거나 삭제 요청을 확인했나요? 이 문의는 영구 삭제됩니다.'))return;const res=await fetch('/api/admin/inquiries',{method:'DELETE',headers:{Authorization:'Bearer '+key,'Content-Type':'application/json'},body:JSON.stringify({id})});if(res.ok){setItems(v=>v.filter(i=>i.id!==id));setStatus('문의가 삭제되었습니다.')}else setStatus('삭제하지 못했습니다. 다시 시도해 주세요.')}return <section className="wrap section"><p className="eyebrow">PRIVATE · INQUIRY DESK</p><h1>연구소 문의 관리</h1><p>문의 내용은 담당자만 확인해 주세요. 상담 종료 후 해당 문의를 삭제합니다.</p><form className="contact-form" style={{maxWidth:650,margin:'30px 0'}} onSubmit={load}><div className="field"><label htmlFor="admin-key">관리자 키</label><input id="admin-key" type="password" value={key} onChange={e=>setKey(e.target.value)} required autoComplete="off"/></div><button className="submit" disabled={busy}>문의 불러오기</button></form><p role="status">{status}</p>{items.map(i=><article className="empty-note" style={{marginTop:20}} key={i.id}><p className="eyebrow">{i.program}</p><h2>{i.name} {i.organization&&`· ${i.organization}`}</h2><p>{i.contact}</p><p>{new Date(i.created_at).toLocaleString('ko-KR',{timeZone:'Asia/Seoul'})}</p><p style={{whiteSpace:'pre-wrap',margin:'20px 0'}}>{i.message}</p><p className="small">접수 번호: {i.id}</p><button className="text-link" onClick={()=>remove(i.id)}>상담 종료 · 문의 삭제</button></article>)}</section>}
+const sheetUrl='https://docs.google.com/spreadsheets/d/1ELb5ZVdctIBme8B_Uh3diCLD4wkRUinyf0Qvi-OmSA4/edit';
+
+export default function Admin(){
+  return <section className="wrap section">
+    <p className="eyebrow">PRIVATE · INQUIRY DESK</p>
+    <h1>연구소 문의·후기 관리</h1>
+    <p>문의와 강의 후기는 연구소 구글 시트에서 확인합니다. 접근 권한이 있는 구글 계정으로 열어 주세요.</p>
+    <div className="empty-note" style={{marginTop:30}}>
+      <h2>문의 DB</h2>
+      <p>새로 접수된 문의를 확인하고 상담 상태와 답변 메모를 기록하세요.</p>
+      <a className="text-link" href={sheetUrl} target="_blank" rel="noopener noreferrer">구글 문의 시트 열기 ↗</a>
+    </div>
+    <div className="empty-note" style={{marginTop:20}}>
+      <h2>강의 후기</h2>
+      <p>같은 시트의 ‘강의 후기’ 탭에서 접수된 후기를 확인하세요. 공개 동의와 내용을 확인한 뒤 소개 여부를 결정할 수 있습니다.</p>
+      <a className="text-link" href={sheetUrl} target="_blank" rel="noopener noreferrer">구글 후기 시트 열기 ↗</a>
+    </div>
+  </section>;
+}
