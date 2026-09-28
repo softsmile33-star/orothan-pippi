@@ -5,13 +5,16 @@ export default function ReviewForm(){
   const [busy,setBusy]=useState(false);
   const [result,setResult]=useState<{ok:boolean;text:string}|null>(null);
   const locked=useRef(false);
+  const requestId=useRef('');
+
   async function submit(e:React.FormEvent<HTMLFormElement>){
     e.preventDefault();
     if(locked.current||result?.ok||!e.currentTarget.reportValidity())return;
     locked.current=true;setBusy(true);setResult(null);
     const form=new FormData(e.currentTarget);
+    requestId.current ||= crypto.randomUUID();
     const payload={
-      id:crypto.randomUUID(),
+      id:requestId.current,
       name:String(form.get('name')||'').trim(),
       lecture:String(form.get('lecture')||'').trim(),
       organization:String(form.get('organization')||'').trim(),
@@ -29,6 +32,7 @@ export default function ReviewForm(){
     }catch(error){setResult({ok:false,text:error instanceof Error?error.message:'후기를 저장하지 못했습니다. 잠시 후 다시 시도해 주세요.'});}
     finally{locked.current=false;setBusy(false);}
   }
+
   return <form className="contact-form review-form" onSubmit={submit}>
     <fieldset disabled={busy||result?.ok} style={{border:0,padding:0,margin:0,minWidth:0}}>
       <div className="field"><label htmlFor="review-name">이름 또는 닉네임 *</label><input id="review-name" name="name" required maxLength={60} pattern=".*\S.*" placeholder="홈페이지에 표시해도 되는 이름을 적어 주세요"/></div>
