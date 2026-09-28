@@ -1,0 +1,5 @@
+const awards = [
+  {name:'칼데콧 수상작', english:'CALDECOTT', href:'https://blog.naver.com/catching31/224228921857', description:'그림책의 그림과 이야기를 함께 들여다보는 시간. 블로그에서 소개하는 칼데콧 수상작을 만나 보세요.'},
+  {name:'볼로냐 라가치상 수상작', english:'BOLOGNA RAGAZZI', href:'https://blog.naver.com/catching31/224230871385', description:'새로운 시선과 표현을 만나는 그림책 읽기. 블로그에서 소개하는 볼로냐 라가치상 수상작을 살펴보세요.'},
+];
+export default function AwardBooks(){return <section className="award-section" aria-labelledby="award-title"><div className="wrap"><p className="eyebrow">AWARD-WINNING PICTURE BOOKS</p><h2 id="award-title">수상작으로 만나는<br/>그림책의 세계</h2><div className="award-grid">{awards.map((award,i)=><a className="award-card" href={award.href} target="_blank" rel="noopener noreferrer" key={award.english} aria-label={`${award.name} 블로그 글 · 새 창에서 열기`}><span className="award-number">0{i+1}</span><p className="award-english">{award.english}</p><h3>{award.name}</h3><p>{award.description}</p><span className="text-link">수상작 이야기 읽기 ↗</span></a>)}</div></div></section>}
