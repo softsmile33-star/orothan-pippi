@@ -1,4 +1,4 @@
-import {env} from 'cloudflare:workers';
+
 import {z} from 'zod';
 import {inquiryDb,json} from '@/lib/inquiries';
 import {inquiryTypes,failureMessage} from '@/lib/inquiry-fields';
@@ -13,7 +13,7 @@ export async function POST(request:Request) {
     const text=await request.text();if(text.length>40000)return fail(413);
     const parsed=schema.safeParse(Object.fromEntries(new URLSearchParams(text)));
     if(!parsed.success)return fail(400);
-    const url=(env as unknown as {GOOGLE_APPS_SCRIPT_WEB_APP_URL?:string}).GOOGLE_APPS_SCRIPT_WEB_APP_URL;
+ const url=process.env.GOOGLE_APPS_SCRIPT_WEB_APP_URL;
     if(!url||!/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(url))return fail(503);
     const db=inquiryDb();
     // Atomic claim prevents concurrent or retried requests from adding a second Sheet row.
