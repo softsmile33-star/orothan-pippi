@@ -6,4 +6,4 @@ export default function Home(){return <><section className="hero wrap"><p classN
   {tag:'NOTICE',title:'새로운 만남을 준비하고 있어요',desc:'프로그램 모집과 연구소 소식은 이곳에서 안내합니다.',image:'새로운 소식',href:'/stories'},
   {tag:'PICTURE BOOK Q&A',title:'그림책 인문학 Q&A',desc:'책 고르기부터 생각을 여는 대화까지, 질문과 답변 6개를 만나 보세요.',image:'그림책 인문학 Q&A',href:'/faq/picture-books'},
   {tag:'DIARY Q&A',title:'일기쓰기 Q&A',desc:'첫 일기부터 꾸준히 쓰는 습관까지, 질문과 답변 6개를 만나 보세요.',image:'일기쓰기 Q&A',href:'/faq/diary'}
-].map(({tag,title,desc,image,href},i)=><a className="story" href={href} key={tag}><div className={'story-art art-'+i}><span>{image}</span></div><p className="eyebrow">{tag}</p><h3>{title}</h3><p>{desc}</p></a>)}</div></section><Invitation/></>}
+].map(({tag,title,desc,image,href},i)=><a className={'story'+(i?' art-only':'')} href={href} key={tag} aria-label={title}><div className={'story-art art-'+i}><span>{image}</span></div>{i===0&&<><p className="eyebrow">{tag}</p><h3>{title}</h3><p>{desc}</p></>}</a>)}</div></section><Invitation/></>}
