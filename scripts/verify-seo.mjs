@@ -5,7 +5,8 @@ const pages=JSON.parse(fs.readFileSync('lib/seo-pages.json','utf8'));
 const origin='https://www.orothan-pippi.com';
 const mode=process.argv[2]??'verify';const base=process.argv[3]??origin;
 const baselineFile='../seo-baseline.json';
-const visible=html=>html.match(/<body\b[^>]*>([\s\S]*?)<\/body>/i)?.[1].replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,'').replace(/<link\b[^>]*>/gi,'').replace(/<!--.*?-->/gs,'').replace(/\s+/g,' ').trim();
+// Next.js adds an inert template for the Analytics client-rendering boundary.
+const visible=html=>html.match(/<body\b[^>]*>([\s\S]*?)<\/body>/i)?.[1].replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,'').replace(/<link\b[^>]*>/gi,'').replace(/<template data-dgst="BAILOUT_TO_CLIENT_SIDE_RENDERING"><\/template>/g,'').replace(/<!--.*?-->/gs,'').replace(/\s+/g,' ').trim();
 const hash=s=>crypto.createHash('sha256').update(s??'').digest('hex');
 const descriptions=new Set();const baseline=mode==='verify'?JSON.parse(fs.readFileSync(baselineFile,'utf8')):{};const results=[];
 for(const path of Object.keys(pages)){
