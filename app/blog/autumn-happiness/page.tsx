@@ -1,9 +1,8 @@
+import {pageMetadata} from '@/lib/seo';
+import SeoJsonLd from '@/app/seo-json-ld';
 import {Invitation} from '../../shared';
 
-export const metadata={
-  title:'아이에게 지금의 행복을 알려주는 가을 그림책 10권',
-  description:'아이와 제철 행복을 누리며 읽기 좋은 가을 그림책 10권과 인문학 질문을 소개합니다.'
-};
+export const metadata=pageMetadata('/blog/autumn-happiness');
 
 const books=[
   ['가을 아침에','바쁜 걸음을 잠시 멈추고 하늘과 바람을 바라보게 하는 책입니다. 고개를 드는 작은 행동만으로도 일상 속 기쁨을 발견할 수 있어요.'],
@@ -18,7 +17,7 @@ const books=[
   ['아빠, 나한테 물어봐','함께 걷고 질문을 주고받는 평범한 시간이 오래 남는 행복이 되는 책입니다. 좋은 질문은 정답을 확인하는 일이 아니라 아이의 세계로 들어가는 초대임을 보여줍니다.']
 ];
 
-export default function AutumnHappiness(){return <>
+export default function AutumnHappiness(){return <><SeoJsonLd path="/blog/autumn-happiness"/>
   <article className="article-page">
     <header className="article-header wrap">
       <p className="breadcrumb"><a href="/">홈</a> / <a href="/blog">그림책 Q</a></p>

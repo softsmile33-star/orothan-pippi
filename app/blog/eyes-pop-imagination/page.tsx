@@ -1,9 +1,11 @@
+import {pageMetadata} from '@/lib/seo';
+import SeoJsonLd from '@/app/seo-json-ld';
 import {Invitation} from '../../shared';
 
-export const metadata={title:'눈알 하나로 세상을 다르게 보는 힘 | 그림책 Q',description:'그림책 눈알이 쏙쏙을 통해 관찰력과 상상력, 다르게 해석하는 힘을 키우는 질문을 나눕니다.'};
+export const metadata=pageMetadata('/blog/eyes-pop-imagination');
 const images=Array.from({length:13},(_,i)=>`/images/eyes-pop-${String(i+1).padStart(2,'0')}.png`);
 const Photo=({n,alt}:{n:number;alt:string})=><figure className="article-insight"><img src={images[n-1]} alt={alt}/></figure>;
-export default function Page(){return <><article className="article-page"><header className="article-header wrap"><p className="breadcrumb"><a href="/">홈</a> / <a href="/blog">그림책 Q</a></p><p className="eyebrow">PICTURE BOOK Q</p><h1>눈알 하나로 세상을<br/>다르게 보는 힘</h1><p className="article-intro">같은 물건을 보고도 전혀 다른 것을 떠올리는 아이. 《눈알이 쏙쏙》은 그 엉뚱한 시선이 얼마나 소중한 힘인지 보여줍니다.</p></header><div className="article-body wrap">
+export default function Page(){return <><SeoJsonLd path="/blog/eyes-pop-imagination"/><article className="article-page"><header className="article-header wrap"><p className="breadcrumb"><a href="/">홈</a> / <a href="/blog">그림책 Q</a></p><p className="eyebrow">PICTURE BOOK Q</p><h1>눈알 하나로 세상을<br/>다르게 보는 힘</h1><p className="article-intro">같은 물건을 보고도 전혀 다른 것을 떠올리는 아이. 《눈알이 쏙쏙》은 그 엉뚱한 시선이 얼마나 소중한 힘인지 보여줍니다.</p></header><div className="article-body wrap">
 <section><Photo n={1} alt="눈알이 쏙쏙과 상상력 이야기"/><h2>아이 눈에 보이는 세상은 하나뿐일까요?</h2><p>그림책 인문학은 아이가 스스로 질문하고 자기만의 답을 찾아가도록 돕는 독서 경험입니다. 이 책은 평범한 사물에 작은 눈을 붙이는 순간 익숙한 세계가 새로운 이야기로 바뀌는 즐거움을 선물합니다.</p><p>정답을 찾는 연습도 필요하지만, 삶에서는 같은 것을 다르게 바라보는 힘이 자주 필요합니다. 아이가 “나는 이렇게 보여”라고 말하는 순간을 존중하면 상상은 생각의 자신감으로 이어집니다.</p><Photo n={2} alt="눈알이 쏙쏙 그림책 표지"/></section>
 <section><h2>일상의 물건을 무대로 만드는 타나카 타츠야</h2><p>미니어처 아티스트 타나카 타츠야는 브로콜리를 숲으로, 빵을 구름으로 바꾸듯 가까운 물건의 또 다른 얼굴을 발견합니다. 특별한 재료보다 따뜻한 관찰과 기발한 연결이 먼저입니다.</p><p>책 속 두 눈알 친구가 함께 길을 걷는 다정한 설정 덕분에 아이는 낯선 변신을 편안하게 받아들이고 다음 장면을 먼저 상상해 봅니다.</p><Photo n={3} alt="새롭게 보이는 일상 사물 1"/><Photo n={4} alt="새롭게 보이는 일상 사물 2"/><Photo n={5} alt="새롭게 보이는 일상 사물 3"/></section>
 <section><h2>눈알 하나가 깨우는 세 가지 시선</h2><div className="book-notes">{[['01','관찰하는 힘','모양과 색, 방향과 작은 차이를 찬찬히 살펴봅니다.'],['02','상상하는 힘','익숙한 쓰임을 내려놓고 또 무엇이 될 수 있을지 떠올립니다.'],['03','해석하는 힘','다른 답도 존중하며 자기 시선에 이유를 붙여 표현합니다.']].map(([n,t,b])=><div className="book-note" key={n}><span>{n}</span><div><h3>{t}</h3><p>{b}</p></div></div>)}</div><Photo n={6} alt="관찰과 상상을 보여주는 그림책 장면"/><Photo n={7} alt="다르게 보는 세 가지 힘"/></section>

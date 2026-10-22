@@ -1,10 +1,9 @@
+import {pageMetadata} from '@/lib/seo';
+import SeoJsonLd from '@/app/seo-json-ld';
 import type {CSSProperties} from 'react';
 import {Invitation} from '../../shared';
 
-export const metadata={
-  title:'엄마가 된 후 비로소 깨닫게 된 것 6가지 | 그림책 Q',
-  description:'백희나 작가의 그림책 여섯 권을 따라가며, 엄마가 된 뒤에야 알게 된 마음과 사랑, 쉼과 도움의 의미를 돌아봅니다.'
-};
+export const metadata=pageMetadata('/blog/five-tastes-of-life');
 
 type CropProps={
   src:string; alt:string; sourceWidth:number; sourceHeight:number;
@@ -85,7 +84,7 @@ const lessons=[
   }
 ];
 
-export default function MotherhoodLessons(){return <>
+export default function MotherhoodLessons(){return <><SeoJsonLd path="/blog/five-tastes-of-life"/>
   <article className="article-page">
     <header className="article-header wrap">
       <p className="breadcrumb"><a href="/">홈</a> / <a href="/blog">그림책 Q</a></p>

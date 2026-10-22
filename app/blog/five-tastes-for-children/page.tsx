@@ -1,9 +1,8 @@
+import {pageMetadata} from '@/lib/seo';
+import SeoJsonLd from '@/app/seo-json-ld';
 import {Invitation} from '../../shared';
 
-export const metadata={
-  title:'아이에게 꽃길만 걷게 해주고 싶나요? 삶의 다섯 가지 맛 | 그림책 Q',
-  description:'박완서의 그림책 굴비 한 번 쳐다보고를 통해 아이가 짠맛, 매운맛, 쓴맛, 신맛, 단맛을 경험하며 자기 삶을 살아갈 힘을 생각합니다.'
-};
+export const metadata=pageMetadata('/blog/five-tastes-for-children');
 
 const tastes=[
   ['짠맛','눈물과 노력으로 배우는 맛','기다림과 노력이 힘들어 보인다는 이유로 부모가 모든 일을 대신하면 아이는 자기 힘으로 이루어 낸 기쁨을 만나기 어렵습니다. “힘들었구나. 그래도 끝까지 해냈네”라고 과정과 마음을 알아봐 주세요.'],
@@ -13,7 +12,7 @@ const tastes=[
   ['단맛','다시 일어설 힘을 주는 사랑의 맛','따뜻한 말 한마디와 포옹, 함께 웃고 책 읽는 시간은 어려움을 견디게 하는 마음의 자리입니다. 사랑의 단맛을 충분히 경험한 아이는 힘든 순간에도 “나는 혼자가 아니야”라고 생각할 수 있습니다.']
 ];
 
-export default function FiveTastesForChildren(){return <>
+export default function FiveTastesForChildren(){return <><SeoJsonLd path="/blog/five-tastes-for-children"/>
   <article className="article-page">
     <header className="article-header wrap">
       <p className="breadcrumb"><a href="/">홈</a> / <a href="/blog">그림책 Q</a></p>

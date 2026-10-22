@@ -1,10 +1,9 @@
+import {pageMetadata} from '@/lib/seo';
+import SeoJsonLd from '@/app/seo-json-ld';
 import type {CSSProperties} from 'react';
 import {Invitation} from '../../shared';
 
-export const metadata={
-  title:'초등 그림책 인문학, 보이지 않는 것을 보는 방법 | 그림책 Q',
-  description:'어린 왕자, 프레드릭, 알사탕과 일기 쓰기를 통해 아이가 눈앞의 결과 너머 마음과 관계를 바라보는 힘을 키우는 방법을 나눕니다.'
-};
+export const metadata=pageMetadata('/blog/seeing-the-invisible');
 
 type CropProps={
   src:string; alt:string; sourceWidth:number; sourceHeight:number;
@@ -22,7 +21,7 @@ function ScreenshotCrop({src,alt,sourceWidth,sourceHeight,x,y,width,height,class
   </div>;
 }
 
-export default function SeeingTheInvisible(){return <>
+export default function SeeingTheInvisible(){return <><SeoJsonLd path="/blog/seeing-the-invisible"/>
   <article className="article-page">
     <header className="article-header wrap">
       <p className="breadcrumb"><a href="/">홈</a> / <a href="/blog">그림책 Q</a></p>

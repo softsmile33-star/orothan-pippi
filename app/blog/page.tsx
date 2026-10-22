@@ -1,9 +1,8 @@
+import {pageMetadata} from '@/lib/seo';
+import SeoJsonLd from '@/app/seo-json-ld';
 import {Invitation} from '../shared';
 
-export const metadata={
-  title:'그림책 Q | 오롯한 삐삐 그림책 인문학 연구소',
-  description:'그림책에서 시작해 아이의 삶과 마음으로 이어지는 질문을 나눕니다.'
-};
+export const metadata=pageMetadata('/blog');
 
 const posts=[{
   href:'/blog/seeing-the-invisible',
@@ -44,7 +43,7 @@ const posts=[{
   authorCrop:true
 }];
 
-export default function BlogPage(){return <>
+export default function BlogPage(){return <><SeoJsonLd path="/blog"/>
   <section className="page-heading"><div className="wrap"><p className="breadcrumb"><a href="/">홈</a> / 블로그</p><p className="eyebrow">PICTURE BOOK Q</p><h1>그림책 Q</h1><p className="lead">그림책 한 권에서 시작한 질문을 아이의 오늘과 삶의 이야기로 이어갑니다.</p></div></section>
   <section className="wrap content-section blog-list">
     {posts.map(post=><a className="blog-card" href={post.href} key={post.href}>
