@@ -18,12 +18,9 @@
 - /sitemap.xml, /robots.txt, /llms.txt. 관리자와 API는 사이트맵에서 제외하고 robots에 수집 제외 지정. 관리자 noindex도 유지합니다. robots는 접근 제어 수단이 아닙니다.
 
 ## 방문자 분석
-기존 추적 스크립트는 없습니다. @vercel/analytics 공식 패키지와 컴포넌트를 준비했습니다.
-현재 Vercel 연결은 팀 접근 권한이 없어 대시보드의 Web Analytics 활성화 여부를 확인하거나 변경할 수 없습니다.
-1. 운영 Vercel 프로젝트 orothan-pippi의 Analytics에서 Enable을 선택합니다.
-2. Production 환경변수 NEXT_PUBLIC_ENABLE_VERCEL_ANALYTICS=true를 설정합니다.
-3. 다시 배포하면 측정이 시작됩니다. 기본값은 꺼짐이며 임의 추적 ID는 없습니다.
-관리자/API 이벤트는 제외하며 URL의 query와 hash도 제거해 문의 관련 값이 전송되지 않도록 합니다.
+기존 중복 추적 스크립트는 없습니다. @vercel/analytics/next 공식 컴포넌트를 루트 레이아웃에서 한 번 실행합니다. 별도 추적 ID나 실행용 환경변수는 필요하지 않습니다.
+Vercel 프로젝트의 Analytics에서 Enable을 켜야 수집 경로가 활성화됩니다. 현재 연결 도구는 팀 접근 권한이 없고 브라우저도 로그인이 필요하므로 대시보드의 수집 활성화는 별도 확인 대상입니다.
+관리자/API 이벤트는 제외하며 URL의 query와 hash도 제거합니다.
 
 ## 검증
 - node scripts/verify-seo.mjs baseline: 수정 전 운영 페이지의 보이는 HTML 구조를 저장합니다.
