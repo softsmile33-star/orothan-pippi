@@ -1,3 +1,5 @@
+export const metadata = { robots: { index: false, follow: false } };
+
 const sheetUrl='https://docs.google.com/spreadsheets/d/1ELb5ZVdctIBme8B_Uh3diCLD4wkRUinyf0Qvi-OmSA4/edit';
 
 export default function Admin(){
